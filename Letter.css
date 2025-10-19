@@ -208,7 +208,7 @@ body {
     margin-bottom: 40px;
     overflow: hidden;
     text-align: center;
-    border: 1px solid red;
+    /* border: 1px solid red; */
 
     word-wrap: break-word;   /* tự động ngắt từ dài */
     overflow-wrap: break-word; /* tương thích trình duyệt mới */
