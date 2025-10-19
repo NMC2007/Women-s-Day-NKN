@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+a {
+    text-decoration: none;
+    color: white;
+}
+html,
+body {
+    background: linear-gradient(hsl(319, 100%, 88%), #ffffff);
+    height: 100vh;
+}
+
+#container {
+    width: 100%;
+    height: 100vh;
+    margin: auto;
+}
+
+
+#container #screen {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    margin: 0 auto;
+} 
+#container #screen .message {
+    text-align: center;
+    width: 150px;
+    margin-bottom: 15px;
+    
+}
+
+#container #screen .container_Loading {
+    width: 250px;
+    height: 30px;
+    padding: 2px;
+    border: 2px solid rgb(0, 0, 0);
+    background-color: white;
+    position: relative;
+}
+
+#container #screen .container_Loading .item_Loading {
+    background-color: rgb(250, 85, 88);
+    height: 100%;
+    width: 0%;
+}
+#container #screen .container_Loading span {
+    position: absolute;
+    left: 50%;
+    top: 26%;
+    transform: translateX(-50%);
+    z-index: 5;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    color: rgb(45, 45, 45);
+}
+
+#container #screen .container_btn {
+    margin-top: 11px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    
+}
+
+#container #screen .container_btn .btn_love .btn {
+    display: block;
+}
+#container #screen .container_btn .btn_love .message_loading_item {
+    display: none;
+}
+#container #screen .container_btn .message_loading .btn {
+    display: none;
+}
+#container #screen .container_btn .message_loading .message_loading_item {
+    display: block;
+    color: rgb(250, 85, 88);
+}
+
+#container #screen .container_btn a {
+    padding: 8px 10px;
+    border-radius: 20px;
+    font-size: 14px;
+    /* font-family: 'Dancing Script', cursive; */
+    background-color: rgb(250, 85, 88);
+}
+
+
+/* Hiệu ứng thụt xuống và thò lên */
+@keyframes slideDownUp {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(20px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+/* Áp dụng hiệu ứng cho btn_love */
+.btn_love.animate {
+    animation: slideDownUp 0.6s ease-in-out;
+}

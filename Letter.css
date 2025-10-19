@@ -1,0 +1,236 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Pacifico&family=Sacramento&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat&family=Patrick+Hand&family=Handlee&family=Dancing+Script&family=Sacramento&family=Great+Vibes&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+html,
+body {
+    /* background: linear-gradient(hsl(319, 100%, 88%), #ffffff); */
+    background: linear-gradient(hsl(319, 100%, 88%), #ffffff);
+    height: 100vh;
+    position: relative;
+}
+
+.Container {
+    width: 100%;
+    height: 100vh;
+    margin: auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    will-change: transform;
+    overflow: hidden;
+
+    /* border: 1px solid red; */
+}
+
+
+/* chữ rơi */
+.falling {
+    position: absolute;
+    font-weight: bold;
+    color: rgb(255, 240, 251);
+    text-shadow: 0 0 2px currentColor,
+    0 0 8px currentColor,
+    0 0 5px currentColor,
+    0 0 5px currentColor,
+    0 0 8px rgba(255, 255, 255, 0.112);
+    animation: fall linear forwards;
+    white-space: nowrap;
+    letter-spacing: 1px;
+    pointer-events: none;
+    z-index: -100;
+}
+@keyframes fall {
+    0% {
+        transform: translateY(-100px) translateZ(var(--z-depth));
+        opacity: .9;
+    }
+    90% {
+        transform: translateY(80vh) translateZ(var(--z-depth));
+        opacity: .8;
+    }
+    100% {
+        transform: translateY(100vh) translateZ(var(--z-depth));
+        opacity: 0;
+    }
+}
+
+/* mặc định cẩn các ele ko cần thiết */
+.item-None {
+    display: none;
+    opacity: 0;
+    pointer-events: none; /* 🔥 Không cho block này bắt sự kiện chuột */
+}
+
+/* hiện lên khi cần */
+.show-Letter {
+
+    /* thêm important để đè flex mặc định của Container_Letter */
+    display: flex !important;
+    opacity: 1;
+    animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+
+
+.BGRLetter1 {
+    position: relative;
+    width: 320px;
+    height: 420px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Hiệu ứng lên xuống */
+    animation: floatUpDown 3s ease-in-out infinite;
+    /* border: 1px solid red; */
+}
+
+.BGRLetter1::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 250px;   /* kích thước bóng */
+    height: 30px;
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 50%;
+    filter: blur(8px);
+    z-index: 0; /* nằm dưới các layer thư */
+}
+
+
+
+/* --- Animation --- */
+@keyframes floatUpDown {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-15px); /* điều chỉnh độ nhún */
+    }
+}
+
+
+/* Cấu trúc layer chung */
+.letter-layer {
+    display: flex;
+    position: absolute;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    transition: all 0.5s ease;
+}
+
+/* --- LAYER 1: NỀN DƯỚI CÙNG --- */
+.layer-bottom {
+    background-image: url('./img/WMD3.png');
+    z-index: 1;
+    top: -20px;
+    left: 0;
+}
+
+/* --- LAYER 2: LÁ THƯ CHÍNH --- */
+.layer-middle {
+    width: 90%;
+    background-image: url('./img/WMD2.png');
+    z-index: 2;
+    bottom: 0px;
+    left: 5%;
+}
+
+/* --- LAYER 3: NẮP THƯ --- */
+.layer-top {
+    background-image: url('./img/WMD1.png');
+    z-index: 3;
+    bottom: -47px;
+    left: 0;
+}
+
+
+
+.Container_Letter {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1000;
+    background-color: rgba(36, 36, 36, 0.646);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid red; */
+}
+
+.Container_Letter .Letter {
+    max-width: 500px;
+    width: 100%;
+    height: 500px;
+    /* border: 1px solid red; */
+    background-image: url('img/Letter.png');
+    background-size: 110%;
+    background-position-x: -22px;
+    background-position-y: 55px;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ContentLetter {
+    width: 80%;
+    /* height: 400px; */
+    margin-bottom: 40px;
+    overflow: hidden;
+    text-align: center;
+    border: 1px solid red;
+
+    word-wrap: break-word;   /* tự động ngắt từ dài */
+    overflow-wrap: break-word; /* tương thích trình duyệt mới */
+
+    color: #d45a7c;
+}
+
+.ContentLetter h3 {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 26px;
+}
+
+.ContentLetter p {
+    white-space: normal;  /* cho phép xuống dòng tự nhiên */
+    margin: 0;
+    font-size: 20px;
+    font-family: 'Patrick Hand', cursive;
+}
+
+
+
+.ContentLetter a {
+    display: none;
+
+}
